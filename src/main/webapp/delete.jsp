@@ -45,9 +45,9 @@
 		<div class="collapse navbar-collapse"
 			id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
-				<li class="active"><a href="readDB.jsp">View Database</a></li>
+				<li><a href="readDB.jsp">View Database</a></li>
 				<li><a href="addToDB.html">Add Item</a></li>
-				<li><a href="delete.jsp">Delete Item</a></li>
+				<li class="active"><a href="delete.jsp">Delete Item</a></li>
 				<li><a href="updateDB.html">Update Item</a></li>
 			</ul>
 		</div>
@@ -61,7 +61,8 @@
 
 					<h1>Boot Camp Bakery - View</h1>
 
-					<table style="background-color: white" class="table table-bordered table-hover">
+					<table style="background-color: white"
+						class="table table-bordered table-hover">
 						<tr>
 							<th>Bakery ID</th>
 							<th>Type</th>
@@ -100,8 +101,34 @@
 
 	</div>
 	<!-- /#wrapper -->
+	<br>
+	<br>
+	<br>
+	<form action="deleteFromDB" method="post">
+		<h2 >Delete an Item</h2>
+		<select name="bakery_id">
+			<label>Bakery ID</label>
+			<%
+				DAO.viewDB();
+			%>
+			<%
+				Bakery deleteFromJSP = new Bakery();
+				for (int i = 0; i < DAO.ourBakery.size(); i++) {
+					deleteFromJSP = DAO.ourBakery.get(i);
+			%>
 
-	<!-- Put your page content here! -->
+			<option><%=deleteFromJSP.getBakeryID()%></option>}
+			<%
+				}
+				DAO.ourBakery.clear();
+			%>
+		</select>
+		<button type="submit" onclick="alert('This item has been deleted!')"value="Delete">
+			<span class="glyphicon glyphicon-trash">Delete</span>
+		</button>
+	</form>
+
+
 
 	<!-- jQuery -->
 	<script src="js/jquery.js"></script>

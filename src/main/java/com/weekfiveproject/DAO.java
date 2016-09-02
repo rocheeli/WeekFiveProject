@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class DAO {
-	
+
 	static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
 	static final String DB_URL = "jdbc:mysql://localhost:3306/?user=root&autoReconnect=true&useSSL=false";
 	static final String USER = "root";
@@ -15,9 +15,9 @@ public class DAO {
 	static Statement STMT = null;
 	static PreparedStatement PREP_STMT = null;
 	static ResultSet RES_SET = null;
-	
+
 	public static final ArrayList<Bakery> ourBakery = new ArrayList<>();
-	
+
 	public static void connToDB() {
 
 		try {
@@ -34,12 +34,10 @@ public class DAO {
 		}
 
 	}
-	
+
 	public static void viewDB() {
 
 		connToDB();
-
-		
 
 		try {
 
@@ -69,7 +67,7 @@ public class DAO {
 		}
 
 	}// view
-	
+
 	public static void writeToDB(Bakery bakery) {
 
 		Bakery itemToAdd = new Bakery();
@@ -98,21 +96,19 @@ public class DAO {
 
 	}// write
 
-	public static void deleteFromDB(Bakery bakery) {
+	public static void deleteFromDB(int id) {
 
 		Bakery itemToDelete = new Bakery();
 
-		
 		Scanner sc = new Scanner(System.in);
 
 		connToDB();
 
 		System.out.println("Which item would you like to delete?" + "\nPlease select an ID");
-	//	String id = sc.nextInt();
+		// String id = sc.nextInt();
 
 		try {
-			PREP_STMT = CONN.prepareStatement(delFromDB);
-			PREP_STMT.setString(1, itemToDelete.getBakeryID());
+			PREP_STMT = CONN.prepareStatement(delFromDB(id));
 
 			PREP_STMT.executeUpdate();
 
@@ -121,54 +117,39 @@ public class DAO {
 			e.printStackTrace();
 		}
 	}// delete
-	
-	
-public static void updateDB(){
-		
+
+	public static void updateDB(Bakery bakery) {
+
 		Bakery itemToUpdate = new Bakery();
-		
+
 		connToDB();
 		try {
 			PREP_STMT = CONN.prepareStatement(updateToDB);
-			
+
 			PREP_STMT.setString(1, itemToUpdate.getBakeryID());
 			PREP_STMT.setString(2, itemToUpdate.getType());
 			PREP_STMT.setString(3, itemToUpdate.getCalories());
 			PREP_STMT.setString(4, itemToUpdate.getPrice());
 			PREP_STMT.setString(5, itemToUpdate.getTopping());
 			PREP_STMT.setString(6, itemToUpdate.getBakeryID());
-			
+
 			PREP_STMT.executeUpdate();
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-	
+
 	}
 
-private static String insertIntoDB = "INSERT INTO `bakery`.`bakery`" + "(type, calories, price, topping)"
-		+ " VALUES " + "(?, ?, ?, ?)";
+	private static String insertIntoDB = "INSERT INTO `bakery`.`bakery`" + "(type, calories, price, topping)"
+			+ " VALUES " + "(?, ?, ?, ?)";
 
+	private static String delFromDB(int id) {
+		return "DELETE FROM `bakery`.`bakery` WHERE bakery_id = " + id + ";";
 
-private static String delFromDB = "DELETE FROM `bakery`.`bakery` "
-		+ "WHERE"
-		+ "(bakery_id)" 
-		+ "= (?)";
-	
+	}
 
-private static String updateToDB = "UPDATE `bakery`.`bakery`"
-		+ "SET"
-		+ " bakery_id= ?, type= ?, calories= ?, price= ?, topping= ?"
-		+ " WHERE "
-		+ "`bakery_id`"
-		+ "= ?";
-	
-
-
-
-
-
-
-	
+	private static String updateToDB = "UPDATE `bakery`.`bakery`" + "SET"
+			+ " bakery_id= ?, type= ?, calories= ?, price= ?, topping= ?" + " WHERE " + "`bakery_id`" + "= ?";
 
 }

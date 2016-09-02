@@ -45,14 +45,14 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li>
+                    <li class = "active">
                         <a href="readDB.jsp">View Database</a>
                     </li>
-                    <li>
+                    <li class = "active">
                         <a href="addToDB.html">Add Item</a>
                     </li>
-                    <li>
-                        <a href="deleteFromDB.html">Delete Item</a>
+                    <li class = "active">
+                        <a href="delete.jsp">Delete Item</a>
                     </li>
                     <li class = "active'">
                         <a href="updateDB.html">Update Item</a>
@@ -63,17 +63,16 @@
         </div>
         <!-- /.container -->
     </nav>
-<form action="updateDB" method="post" >
-			<h2 style= "background-color: white">Update an Item</h2>
-			Item Type:<br> <input type="text" name="type"
-				placeholder="Type"> <br> Calories:<br> <input
-				type="text" name="calories" placeholder="Calories"> <br>
-			Price:<br> <input type="text" name="price" placeholder="Price">
-			<br> Topping:<br> <input type="text" name="topping"
-				placeholder="Topping"> <br>
+<form action="updateDB" method="post">
+			<h2>Update an Item</h2>
+			<label>Bakery ID:</label> <br> <input type="text" name="bakery_id" placeholder="ID"> <br> 
+		<label>Item Type:</label> <br> <input type="text" name="type"placeholder="Type"> <br> 
+		<label>Calories:</label> <br> <input type="text" name="calories" placeholder="Calories"> <br>
+	<label>Price:</label><br> <input type="text" name="price" placeholder="Price">
+			<br> <label>Topping:</label><br> <input type="text" name="topping"placeholder="Topping"> <br>
 			<br>
 
-			<button type="submit" class="btn btn-default btn-lg btn-block"
+			<button type="submit" 
 				buttontype="submit" onclick="alert('Thanks for your input!')"
 				value="Update">
 				<span class="glyphicon glyphicon-plus">Update</span>

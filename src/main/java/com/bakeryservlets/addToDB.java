@@ -37,16 +37,15 @@ public class addToDB extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		Bakery addToDB = new Bakery();
-		
+
 		addToDB.setType(request.getParameter("type"));
 		addToDB.setCalories(request.getParameter("calories"));
 		addToDB.setPrice(request.getParameter("price"));
 		addToDB.setTopping(request.getParameter("topping"));
-		
+
 		DAO.writeToDB(addToDB);
-		
+
 		request.getRequestDispatcher("readDB.jsp").forward(request, response);
-		
 		
 	}
 

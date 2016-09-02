@@ -17,3 +17,19 @@ body {
     background-size: cover;
     -o-background-size: cover;
 }
+h1{
+	text-align: center;
+}
+h1,h2{
+    color: #ffcc99 ;
+    font-size: 3.5em;
+    font-weight: bold;
+    text-shadow: 4px 4px #663300 ;
+}
+
+label{
+    color: #ffcc99 ;
+    font-size: 1.875em;
+    font-weight: bold;
+    text-shadow: 4px 4px #663300 ;
+}
